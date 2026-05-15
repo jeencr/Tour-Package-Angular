@@ -5,9 +5,9 @@ from users import views
 
 urlpatterns=[
     path('', views.get_users,),
-    path('user_register', views.user_register,),
     path('login/',TokenObtainPairView.as_view()),
     path('refresh/',TokenRefreshView.as_view()),
     path('user_profile/', views.user_profile,),
+    path('customer_register/', views.customer_register,),
 
 ]

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,7 +11,8 @@ export class LoginComponent implements OnInit {
   username="";
   password="";
 
-  constructor(private http:HttpClient) {
+  constructor(private authServices:AuthService) {
+
     
    }
 
@@ -23,7 +25,7 @@ export class LoginComponent implements OnInit {
       'password':this.password,
     }
 
-    this.http.post(`${environment.baseUrl}/users/login/`,data).subscribe((response:any)=>{
+    this.authServices.login(data).subscribe((response:any)=>{
       console.log(response);
       localStorage.setItem('access',response.access)
       localStorage.setItem('refresh',response.refresh)
@@ -32,6 +34,16 @@ export class LoginComponent implements OnInit {
     console.log(this.username);
     console.log(this.password);
 
+  }
+
+  getProfile(){
+    const token = localStorage.getItem('access');
+    const headers = {
+      'Authorization':`Bearer ${token}`
+    }
+    this.authServices.getProfile().subscribe((response)=>{
+      console.log(response)
+    })
   }
 
 }

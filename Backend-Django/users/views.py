@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from users.serializer import UserSerializer, RegisterSerializer
+from users.serializer import *
 
 
 # Create your views here.
@@ -16,17 +16,30 @@ def get_users(request):
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data)
 
-@api_view(['POST'])
-def user_register(request):
-    serializer = RegisterSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response({'message': 'User registered successfully'})
-    return Response(serializer.errors,)
+# @api_view(['POST'])
+# def user_register(request):
+#     serializer = RegisterSerializer(data=request.data)
+#     if serializer.is_valid():
+#         serializer.save()
+#         return Response({'message': 'User registered successfully'})
+#     return Response(serializer.errors,)
 
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def user_profile(request):
     serializer = UserSerializer(request.user)
+    print(serializer.data)
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def customer_register(request):
+        serializer = CustomerRegisterSerializer(data=request.data)
+
+        if serializer.is_valid():
+             serializer.save()
+             return Response({'user registered Successfully'})
+        
+        return Response(serializer.errors)
+
