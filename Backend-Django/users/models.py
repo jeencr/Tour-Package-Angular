@@ -16,7 +16,9 @@ class Providers(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     phone = models.CharField(max_length=20)
     company_name = models.CharField(max_length=100)
-
+    place = models.CharField(max_length=100)
+    district = models.CharField(max_length=100)
+    is_approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.company_name
+        return self.user.username

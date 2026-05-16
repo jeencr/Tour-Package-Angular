@@ -1,7 +1,7 @@
 
 <br><br><br><br><div align="center"><div class="card text-center w-50">
     <div class="card-body">
-        <h4 class="card-title">Customer Register</h4>
+        <h4 class="card-title">Provider Register</h4>
         
         <div>
             <div class="form-floating mb-3">
@@ -35,6 +35,15 @@
                 <label for="formId1">Email</label>
             </div>
 
+            <div class="form-floating mb-3">
+                <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="company_name"
+                    placeholder=""
+                />
+                <label for="formId1">Company Name</label>
+            </div>
             
             <div class="form-floating mb-3">
                 <input
@@ -71,7 +80,7 @@
             <button
                 type="submit"
                 class="btn btn-primary"
-                (click)="register_customer()"
+                (click)="register_provider()"
             >
                 Submit
             </button>

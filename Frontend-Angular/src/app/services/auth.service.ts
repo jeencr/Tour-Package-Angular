@@ -19,4 +19,12 @@ export class AuthService {
     const headers  = {Authorization:`Bearer ${token}`}
     return this.http.get(`${environment.baseUrl}/users/user_profile/`,{headers})
   }
+
+  customer_register(data:any){
+    return this.http.post(`${environment.baseUrl}/users/customer_register/`,data)
+  }
+
+    provider_register(data:any){
+    return this.http.post(`${environment.baseUrl}/users/provider_register/`,data)
+  }
 }

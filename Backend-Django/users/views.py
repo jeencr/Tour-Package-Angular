@@ -43,3 +43,13 @@ def customer_register(request):
         
         return Response(serializer.errors)
 
+
+@api_view(['POST'])
+def provider_register(request):
+     serializer = ProviderRegisterSerializer(data=request.data)
+
+     if serializer.is_valid():
+          serializer.save()
+          return Response({'Provider Registered Successfully'})
+     return Response(serializer.errors)
+
