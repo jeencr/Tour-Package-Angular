@@ -30,7 +30,12 @@ def get_users(request):
 def user_profile(request):
     serializer = UserSerializer(request.user)
     print(serializer.data)
-    return Response(serializer.data)
+    return Response({
+         'id':request.user.id,
+         'username':request.user.username,
+         'email':request.user.email,
+         'group':request.user.groups.first().name,
+         })
 
 
 @api_view(['POST'])

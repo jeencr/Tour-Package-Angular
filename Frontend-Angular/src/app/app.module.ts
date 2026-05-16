@@ -8,12 +8,18 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProviderRegisterComponent } from './provider-register/provider-register.component';
+import { LandingComponent } from './landing/landing.component';
+import { CustomerHomeComponent } from './customer-home/customer-home.component';
+import { ProviderHomeComponent } from './provider-home/provider-home.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ProviderRegisterComponent
+    ProviderRegisterComponent,
+    LandingComponent,
+    CustomerHomeComponent,
+    ProviderHomeComponent
   ],
   imports: [
     BrowserModule,
