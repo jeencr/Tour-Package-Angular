@@ -5,6 +5,8 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from .serializer import PackageSerializer
 
+from .models import *
+
 # Create your views here.
 
 @api_view(['POST'])
@@ -25,3 +27,89 @@ def create_package(request):
         return Response({'message':'Package added'})
     return Response(serializers.errors)
 
+
+@api_view(['GET'])
+def categories_list(request):
+    categories = Category.objects.all()
+    data =[]
+    for i in categories:
+        data.append({
+            'id':i.id,
+            'name':i.name,
+        })
+    
+    return Response(data)
+
+
+@api_view(['GET'])
+def destinations_lists(request):
+    destinations= Destination.objects.all()
+    data = []
+    for i in destinations:
+        data.append({
+            'id':i.id,
+            'name':i.name,
+        })
+    return Response(data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def provider_packages(request):
+    provider = Providers.objects.get(user = request.user)
+
+    packages = Package.objects.filter(provider = provider)
+
+    serializer = PackageSerializer(packages,many=True)
+    print(serializer.data)
+    return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_package(request,pk):
+    provider = Providers.objects.get(user = request.user)
+
+    try:
+        package = Package.objects.get(id = pk,provider = provider)
+    except Package.DoesNotExist:
+        return Response({'message':'Package not Found'})
+    
+    package.delete()
+
+    return Response({'message':'success'})
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def single_package(request,pk):
+    provider  = Providers.objects.get(user = request.user)
+
+    try:
+        package = Package.objects.get(id=pk,provider=provider)
+    except Package.DoesNotExist:
+        return Response({'Package does not exist'})
+
+    serializer = PackageSerializer(package)
+    return Response(serializer.data)
+
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def update_package(request,pk):
+    provider  = Providers.objects.get(user = request.user)
+
+    try:
+        package = Package.objects.get(id=pk,provider=provider)
+    except Package.DoesNotExist:
+        return Response({'Package does not exist'})
+
+    serializer = PackageSerializer(package,data=request.data,partial = True)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    
+        return Response({"message":"success"})
+    
+    return Response(serializer.errors)

@@ -9,7 +9,6 @@ class Category(models.Model):
     
 class Destination(models.Model):
 
-    category = models.ForeignKey(Category,on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     description = models.TextField()
     latitude = models.CharField(max_length=100)

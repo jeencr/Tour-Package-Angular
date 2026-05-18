@@ -11,6 +11,9 @@ import { ProviderRegisterComponent } from './provider-register/provider-register
 import { LandingComponent } from './landing/landing.component';
 import { CustomerHomeComponent } from './customer-home/customer-home.component';
 import { ProviderHomeComponent } from './provider-home/provider-home.component';
+import { AddPackageComponent } from './add-package/add-package.component';
+import { ProviderPackageComponent } from './provider-package/provider-package.component';
+import { EditPackageComponent } from './edit-package/edit-package.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +22,10 @@ import { ProviderHomeComponent } from './provider-home/provider-home.component';
     ProviderRegisterComponent,
     LandingComponent,
     CustomerHomeComponent,
-    ProviderHomeComponent
+    ProviderHomeComponent,
+    AddPackageComponent,
+    ProviderPackageComponent,
+    EditPackageComponent
   ],
   imports: [
     BrowserModule,

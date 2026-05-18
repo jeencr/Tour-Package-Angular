@@ -58,3 +58,5 @@ def provider_register(request):
           return Response({'Provider Registered Successfully'})
      return Response(serializer.errors)
 
+
+

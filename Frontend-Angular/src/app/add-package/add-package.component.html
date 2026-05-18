@@ -1,0 +1,113 @@
+<br /><br /><br /><br />
+<div align="center">
+  <div class="card text-start w-50">
+    <div class="card-body">
+      <h4 class="card-title">Add Packages</h4>
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="formId1"
+          placeholder=""
+          [(ngModel)]="package_name"
+        />
+        <label for="formId1">Package Name</label>
+      </div>
+
+      <div class="mb-3">
+        <label for="" class="form-label">Destination</label>
+        <select class="form-select form-select-lg" [(ngModel)]="destination">
+          <option value="">Select Destination</option>
+          <option *ngFor="let d of destinations" [value]="d.id">
+            {{ d.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="" class="form-label">Categories</label>
+        <select class="form-select form-select-lg" [(ngModel)]="category">
+          <option value="">Select Category</option>
+          <option *ngFor="let c of categories" [value]="c.id">
+            {{ c.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="" class="form-label">Description</label>
+        <textarea
+          class="form-control"
+          
+          rows="3"
+          [(ngModel)]="description"
+        ></textarea>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="number"
+          class="form-control"
+          id="formId1"
+          placeholder=""
+          [(ngModel)]="amount"
+        />
+        <label for="formId1">Package Amount</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="number"
+          class="form-control"
+          id="formId1"
+          placeholder=""
+          [(ngModel)]="no_of_days"
+        />
+        <label for="formId1">No of Days</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="number"
+          class="form-control"
+          id="formId1"
+          placeholder=""
+          [(ngModel)]="no_of_nights"
+        />
+        <label for="formId1">No of Nights</label>
+      </div>
+      
+      <div class="form-floating mb-3">
+        <input
+          type="number"
+          class="form-control"
+          id="formId1"
+          placeholder=""
+          [(ngModel)]="no_of_adults"
+        />
+        <label for="formId1">No of Adults</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+          type="number"
+          class="form-control"
+          id="formId1"
+          placeholder=""
+          [(ngModel)]="no_of_children"
+        />
+        <label for="formId1">No of Children</label>
+      </div>
+      
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="addPackage()"
+      >
+        Submit
+      </button>
+      
+
+    </div>
+  </div>
+</div>
