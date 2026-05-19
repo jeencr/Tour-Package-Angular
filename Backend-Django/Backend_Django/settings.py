@@ -128,6 +128,9 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+MEDIA_URL='/media/'
+
+MEDIA_ROOT_ = BASE_DIR/'media'
 
 
 # Static files (CSS, JavaScript, Images)

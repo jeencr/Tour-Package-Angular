@@ -1,0 +1,63 @@
+<div class="contaner mt-5">
+    <h1>{{ packageData.package_name }}</h1>
+
+    <div class="row mt-4">
+
+        <div class="col-mt-8">
+
+           <div class="row">
+
+    <div
+        class="col-md-6 mb-3"
+        *ngFor="let i of packageData.images"
+    >
+
+        <img
+            [src]="'http://127.0.0.1:8000' + i.image"
+            alt=""
+            class="img-fluid rounded shadow"
+        >
+
+    </div>
+
+</div>
+            <h4>Description</h4>
+            <p>{{ packageData.description }}</p>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-3">
+                <h3>{{ packageData.amount | currency : "INR" }}</h3>
+
+                  <p>
+                    {{packageData.no_of_days}} Days
+                </p>
+
+                <p>
+                    {{packageData.no_of_nights}} Nights
+                </p>
+
+                <p>
+                    Adults:
+                    {{packageData.no_of_adults}}
+                </p>
+
+                <p>
+                    Children:
+                    {{packageData.no_of_children}}
+                </p>
+
+                <a
+                    [routerLink]="[
+                      '/edit-package',
+                      packageData.id
+                    ]"
+                    class="btn btn-warning"
+                >
+                    Edit Package
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -11,4 +11,6 @@ urlpatterns =[
     path('delete_package/<pk>/',views.delete_package),
     path('single_package/<pk>/',views.single_package),
     path('update_package/<pk>/',views.update_package),
+    path('upload_images_packages/',views.upload_images_packages),
+    path('public_packages/',views.public_packages),
 ]

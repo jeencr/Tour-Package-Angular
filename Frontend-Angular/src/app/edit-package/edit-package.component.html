@@ -38,7 +38,6 @@
         <label for="" class="form-label">Description</label>
         <textarea
           class="form-control"
-          
           rows="3"
           [(ngModel)]="description"
         ></textarea>
@@ -76,7 +75,7 @@
         />
         <label for="formId1">No of Nights</label>
       </div>
-      
+
       <div class="form-floating mb-3">
         <input
           type="number"
@@ -98,16 +97,10 @@
         />
         <label for="formId1">No of Children</label>
       </div>
-      
-      <button
-        type="submit"
-        class="btn btn-primary"
-        
-      >
+
+      <button type="submit" class="btn btn-primary" (click)="updatePackage()">
         Submit
       </button>
-      
-
     </div>
   </div>
 </div>

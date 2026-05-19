@@ -20,12 +20,13 @@
             <th>Category</th>
             <th>Destination</th>
             <th>Approved</th>
+            <th>Images</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
           <tr class="table-primary" *ngFor="let p of packages">
-            <td scope="row">{{ p.package_name }}</td>
+            <td scope="row"><a [routerLink]="['/package-details',p.id]">{{ p.package_name }}</a></td>
             <td>{{ p.description }}</td>
             <td>{{ p.amount | currency :"INR"}}</td>
             <td>{{ p.no_of_days | number}}</td>
@@ -35,6 +36,9 @@
             <td>{{ p.category_name }}</td>
             <td>{{ p.destination_name }}</td>
             <td>{{ p.is_public }}</td>
+            <td><input type="file" (change)="selectImage($event)"> <br>
+                  <button class="btn btn-success" (click)="uploadImage(p.id)">Upload Image</button>
+            </td>
             <td><a  class="btn btn-danger" (click)="deletePackage(p.id)">Delete</a> | 
                 <a [routerLink]="['/edit-package',p.id]" class="btn btn-warning">Edit</a></td>
           </tr>

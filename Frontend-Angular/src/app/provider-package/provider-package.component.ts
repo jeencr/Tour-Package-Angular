@@ -8,7 +8,24 @@ import { PackageService } from '../services/package.service';
 })
 export class ProviderPackageComponent implements OnInit {
 
+
+
+
   constructor(private packageService:PackageService) { }
+
+  selectedImage:any;
+  
+  selectImage( event:any){
+    this.selectImage = event.target.files[0]
+    console.log(this.selectImage)
+  }
+
+  uploadImage(id:any){
+    this.packageService.uploadPackageImage(id,this.selectImage).subscribe((res)=>{
+      console.log(res)
+    })
+
+  }
 
   packages:any;
   ngOnInit(): void {

@@ -14,6 +14,8 @@ import { ProviderHomeComponent } from './provider-home/provider-home.component';
 import { AddPackageComponent } from './add-package/add-package.component';
 import { ProviderPackageComponent } from './provider-package/provider-package.component';
 import { EditPackageComponent } from './edit-package/edit-package.component';
+import { PackageDetailsComponent } from './package-details/package-details.component';
+import { PublicPackagesComponent } from './public-packages/public-packages.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +27,9 @@ import { EditPackageComponent } from './edit-package/edit-package.component';
     ProviderHomeComponent,
     AddPackageComponent,
     ProviderPackageComponent,
-    EditPackageComponent
+    EditPackageComponent,
+    PackageDetailsComponent,
+    PublicPackagesComponent
   ],
   imports: [
     BrowserModule,

@@ -60,4 +60,44 @@ export class EditPackageComponent implements OnInit {
     })
   }
 
+
+  updatePackage(){
+    console.log("button clicked")
+
+  const data = {
+
+    category:this.category,
+
+    destination:this.destination,
+
+    package_name:this.package_name,
+
+    description:this.description,
+
+    amount:this.amount,
+
+    no_of_days:this.no_of_days,
+
+    no_of_nights:this.no_of_nights,
+
+    no_of_adults:this.no_of_adults,
+
+    no_of_children:this.no_of_children
+
+  }
+
+  console.log(data)
+
+  this.packageService
+  .updatePackage(
+    this.package_id,
+    data
+  )
+  .subscribe((response)=>{
+
+    console.log(response)
+
+  })
+
+}
 }

@@ -9,6 +9,7 @@ import { ProviderHomeComponent } from './provider-home/provider-home.component';
 import { AddPackageComponent } from './add-package/add-package.component';
 import { ProviderPackageComponent } from './provider-package/provider-package.component';
 import { EditPackageComponent } from './edit-package/edit-package.component';
+import { PackageDetailsComponent } from './package-details/package-details.component';
 
 const routes: Routes = [
   {path:'',component:LandingComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:'add-package',component:AddPackageComponent},
   {path:'provider-package',component:ProviderPackageComponent},
   {path:'edit-package/:id',component:EditPackageComponent},
+  {path:'package-details/:id',component:PackageDetailsComponent},
 
 ];
 
