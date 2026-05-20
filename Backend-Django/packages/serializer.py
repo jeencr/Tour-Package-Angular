@@ -1,5 +1,5 @@
 from  rest_framework import serializers
-from .models import Package, PackageImage
+from .models import Favorites, Package, PackageImage
 
 
 class PackageImageSerializer(serializers.ModelSerializer):
@@ -22,3 +22,13 @@ class PackageSerializer(serializers.ModelSerializer):
         model = Package
         fields = '__all__'
 
+
+class FavoriteSerializer(serializers.ModelSerializer):
+
+    package_details = PackageSerializer(
+        source = 'package',
+        read_only =True
+    )
+    class Meta:
+        model = Favorites
+        fields = '__all__'

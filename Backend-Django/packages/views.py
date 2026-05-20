@@ -3,7 +3,7 @@ from users.models import Providers
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
-from .serializer import PackageImageSerializer, PackageSerializer
+from .serializer import FavoriteSerializer, PackageImageSerializer, PackageSerializer
 
 from .models import *
 
@@ -93,6 +93,18 @@ def single_package(request,pk):
     return Response(serializer.data)
 
 
+@api_view(['GET'])
+def public_single_package(request,pk):
+
+    try:
+        package = Package.objects.get(id=pk)
+    except Package.DoesNotExist:
+        return Response({'Package does not exist'})
+
+    serializer = PackageSerializer(package)
+    return Response(serializer.data)
+
+
 
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
@@ -138,7 +150,36 @@ def upload_images_packages(request):
  
 @api_view(['GET'])
 def public_packages(request):
-    packages = Package.objects.filter(is_public='true')
+    packages = Package.objects.filter(is_public='True')
 
     serializer = PackageSerializer(packages,many= True)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def add_favorite(request):
+    customer = Customers.objects.get(user = request.user)
+    package_id = request.data.get('package')
+    try:
+        package = Package.objects.get(id = package_id)
+    except Package.DoesNotExist:
+        return Response({'message':'package Does not exist'})
+    
+    favorite,created = Favorites.objects.get_or_create(customer=customer,package=package)
+
+    if created:
+        return Response({'message':'Added to the favorite'})
+    
+    return Response({'message':'already in favorite'})
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def view_favorites(request):
+    customer = Customers.objects.get(user=request.user)
+
+
+    favorites = Favorites.objects.filter(customer=customer)
+
+    serializer = FavoriteSerializer(favorites,many=True)
     return Response(serializer.data)

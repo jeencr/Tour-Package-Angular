@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
       console.log(response);
       localStorage.setItem('access',response.access)
       localStorage.setItem('refresh',response.refresh)
+      localStorage.setItem('group',response.group)
       console.log('token saved')
 
        this.authServices.getProfile().subscribe((response:any)=>{

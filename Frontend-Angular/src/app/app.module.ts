@@ -16,6 +16,7 @@ import { ProviderPackageComponent } from './provider-package/provider-package.co
 import { EditPackageComponent } from './edit-package/edit-package.component';
 import { PackageDetailsComponent } from './package-details/package-details.component';
 import { PublicPackagesComponent } from './public-packages/public-packages.component';
+import { FavoritePackagesComponent } from './favorite-packages/favorite-packages.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import { PublicPackagesComponent } from './public-packages/public-packages.compo
     ProviderPackageComponent,
     EditPackageComponent,
     PackageDetailsComponent,
-    PublicPackagesComponent
+    PublicPackagesComponent,
+    FavoritePackagesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import Providers
+from users.models import Customers, Providers
 
 # Create your models here.
 class Category(models.Model):
@@ -50,3 +50,12 @@ class PackageImage(models.Model):
 
     def __str__(self):
         return self.package.package_name
+    
+
+class Favorites(models.Model):
+    customer = models.ForeignKey(Customers,on_delete=models.CASCADE)
+    package = models.ForeignKey(Package,on_delete=models.CASCADE)
+    created_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together=['customer','package']

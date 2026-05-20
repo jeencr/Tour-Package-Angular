@@ -10,6 +10,8 @@ import { AddPackageComponent } from './add-package/add-package.component';
 import { ProviderPackageComponent } from './provider-package/provider-package.component';
 import { EditPackageComponent } from './edit-package/edit-package.component';
 import { PackageDetailsComponent } from './package-details/package-details.component';
+import { PublicPackagesComponent } from './public-packages/public-packages.component';
+import { FavoritePackagesComponent } from './favorite-packages/favorite-packages.component';
 
 const routes: Routes = [
   {path:'',component:LandingComponent},
@@ -22,6 +24,8 @@ const routes: Routes = [
   {path:'provider-package',component:ProviderPackageComponent},
   {path:'edit-package/:id',component:EditPackageComponent},
   {path:'package-details/:id',component:PackageDetailsComponent},
+  {path:'public-packages',component:PublicPackagesComponent},
+  {path:'favorite-packages',component:FavoritePackagesComponent},
 
 ];
 

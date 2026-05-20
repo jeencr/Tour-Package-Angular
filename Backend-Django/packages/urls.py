@@ -13,4 +13,7 @@ urlpatterns =[
     path('update_package/<pk>/',views.update_package),
     path('upload_images_packages/',views.upload_images_packages),
     path('public_packages/',views.public_packages),
+    path('public_single_package/<pk>/',views.public_single_package),
+    path('add_favorite/',views.add_favorite),
+    path('view_favorites/',views.view_favorites),
 ]

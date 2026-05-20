@@ -55,6 +55,21 @@ export class PackageService {
       { headers },
     );
   }
+  
+  
+
+  get_single_package_public(id: Number) {
+    const token = localStorage.getItem('access');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.get(
+      `${environment.baseUrl}/packages/public_single_package/${id}/`,
+      { headers },
+    );
+  }
+  
+
 
   updatePackage(id: any, data: any) {
     const token = localStorage.getItem('access');
@@ -92,4 +107,28 @@ export class PackageService {
   getPublicPackages(){
     return this.http.get(`${environment.baseUrl}/packages/public_packages/`)
   }
+
+  addFavoritePackage(data:any){
+    const token = localStorage.getItem('access');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+   
+    
+
+    return this.http.post(`${environment.baseUrl}/packages/add_favorite/`,data,{headers})
+  }
+
+    get_fav_packages() {
+    const token = localStorage.getItem('access');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.get(
+      `${environment.baseUrl}/packages/view_favorites/`,
+      { headers },
+    );
+  }
+
 }

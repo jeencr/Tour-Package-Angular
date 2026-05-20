@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PackageService } from '../services/package.service';
 
 @Component({
   selector: 'app-customer-home',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private packageService:PackageService) { }
 
+packages:any=[]
   ngOnInit(): void {
+    this.packageService.getPublicPackages().subscribe((res)=>{
+      this.packages = res;
+    })
+
+  }
+
+  data:any
+  addFavorite(id:any){
+    this.data = {'package':id}
+    this.packageService.addFavoritePackage(this.data).subscribe((res)=>{
+      console.log(res)
+    })
+
   }
 
 }

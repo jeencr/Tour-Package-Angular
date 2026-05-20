@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PackageService } from '../services/package.service';
 
 @Component({
   selector: 'app-public-packages',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublicPackagesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private packageService:PackageService) {
 
+   }
+packages:any=[]
   ngOnInit(): void {
+    this.packageService.getPublicPackages().subscribe((res)=>{
+      this.packages = res;
+    })
+
   }
+
 
 }
