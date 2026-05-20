@@ -59,3 +59,13 @@ class Favorites(models.Model):
 
     class Meta:
         unique_together=['customer','package']
+
+class Booking(models.Model):
+    customer = models.ForeignKey(Customers,on_delete=models.CASCADE)
+    package = models.ForeignKey(Package,on_delete=models.CASCADE)
+    tour_date = models.DateField()
+    no_of_adults = models.IntegerField()
+    no_of_children = models.IntegerField()
+    total_amount = models.DecimalField(decimal_places=2,max_digits=10)
+    booked_on =  models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=100,default='Pending')

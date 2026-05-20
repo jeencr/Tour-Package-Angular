@@ -3,7 +3,7 @@ from users.models import Providers
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
-from .serializer import FavoriteSerializer, PackageImageSerializer, PackageSerializer
+from .serializer import BookingSerializer, FavoriteSerializer, PackageImageSerializer, PackageSerializer
 
 from .models import *
 
@@ -183,3 +183,19 @@ def view_favorites(request):
 
     serializer = FavoriteSerializer(favorites,many=True)
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def create_booking(request):
+    customer = Customers.objects.get(user=request.user)
+    data = request.data.copy()
+    data['customer'] = customer.id
+    serializer = BookingSerializer(data = data)
+    if serializer.is_valid():
+        serializer.save()
+
+        return Response({'message': 'Package booked succefully'})
+
+    return Response(serializer.errors)
+

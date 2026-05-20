@@ -16,4 +16,5 @@ urlpatterns =[
     path('public_single_package/<pk>/',views.public_single_package),
     path('add_favorite/',views.add_favorite),
     path('view_favorites/',views.view_favorites),
+    path('create_booking/',views.create_booking),
 ]

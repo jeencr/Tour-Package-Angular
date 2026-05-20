@@ -1,5 +1,5 @@
 from  rest_framework import serializers
-from .models import Favorites, Package, PackageImage
+from .models import Booking, Favorites, Package, PackageImage
 
 
 class PackageImageSerializer(serializers.ModelSerializer):
@@ -31,4 +31,9 @@ class FavoriteSerializer(serializers.ModelSerializer):
     )
     class Meta:
         model = Favorites
+        fields = '__all__'
+
+class BookingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Booking
         fields = '__all__'
