@@ -34,6 +34,11 @@ class FavoriteSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class BookingSerializer(serializers.ModelSerializer):
+
+    package_details = PackageSerializer(
+    source = 'package',
+    read_only =True
+)
     class Meta:
         model = Booking
         fields = '__all__'

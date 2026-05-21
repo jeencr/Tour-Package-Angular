@@ -199,3 +199,11 @@ def create_booking(request):
 
     return Response(serializer.errors)
 
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def view_booking_customer(request):
+    customer = Customers.objects.get(user = request.user)
+    bookings = Booking.objects.filter(customer = customer)
+    serializer  =BookingSerializer(bookings,many=True)
+    return Response(serializer.data)

@@ -17,6 +17,7 @@ import { EditPackageComponent } from './edit-package/edit-package.component';
 import { PackageDetailsComponent } from './package-details/package-details.component';
 import { PublicPackagesComponent } from './public-packages/public-packages.component';
 import { FavoritePackagesComponent } from './favorite-packages/favorite-packages.component';
+import { CustomerViewBookingComponent } from './customer-view-booking/customer-view-booking.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { FavoritePackagesComponent } from './favorite-packages/favorite-packages
     PackageDetailsComponent,
     PublicPackagesComponent,
     FavoritePackagesComponent,
+    CustomerViewBookingComponent,
   ],
   imports: [
     BrowserModule,

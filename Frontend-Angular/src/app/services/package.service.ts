@@ -143,4 +143,16 @@ export class PackageService {
 
   }
 
+
+      get_customer_booked_packages() {
+    const token = localStorage.getItem('access');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.get(
+      `${environment.baseUrl}/packages/view_booking_customer/`,
+      { headers },
+    );
+  }
+
 }

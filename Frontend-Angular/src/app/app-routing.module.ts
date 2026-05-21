@@ -12,6 +12,7 @@ import { EditPackageComponent } from './edit-package/edit-package.component';
 import { PackageDetailsComponent } from './package-details/package-details.component';
 import { PublicPackagesComponent } from './public-packages/public-packages.component';
 import { FavoritePackagesComponent } from './favorite-packages/favorite-packages.component';
+import { CustomerViewBookingComponent } from './customer-view-booking/customer-view-booking.component';
 
 const routes: Routes = [
   {path:'',component:LandingComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path:'package-details/:id',component:PackageDetailsComponent},
   {path:'public-packages',component:PublicPackagesComponent},
   {path:'favorite-packages',component:FavoritePackagesComponent},
+  {path:'customer-booking',component:CustomerViewBookingComponent},
 
 ];
 

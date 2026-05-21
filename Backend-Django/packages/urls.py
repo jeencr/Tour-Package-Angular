@@ -17,4 +17,5 @@ urlpatterns =[
     path('add_favorite/',views.add_favorite),
     path('view_favorites/',views.view_favorites),
     path('create_booking/',views.create_booking),
+    path('view_booking_customer/',views.view_booking_customer),
 ]

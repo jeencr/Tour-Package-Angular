@@ -1,0 +1,36 @@
+<div class="m-5">
+    <h3>My Bookings</h3>
+
+    <div
+        class="table-responsive"
+    >
+        <table
+            class="table table-primary"
+        >
+            <thead>
+                <tr>
+                    <th scope="col">package_name</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">Tour Date</th>
+                    <th scope="col">Booked on</th>
+                    <th scope="col">quantity</th>
+                    <th scope="col">Total Amount</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let b of bookings">
+                    <td scope="row">{{ b.package_details.package_name }}</td>
+                    <td scope="row">{{ b.package_details.destination_name }}</td>
+                    <td scope="row">{{ b.tour_date }}</td>
+                    <td scope="row">{{ b.booked_on | date :'dd-MM-yy'}}</td>
+                    <td scope="row">{{ b.quantity }}</td>
+                    <td scope="row">{{ b.total_amount }}</td>
+                    <td scope="row">{{ b.status }}</td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</div>
