@@ -33,10 +33,12 @@ export class LoginComponent implements OnInit {
       console.log(response);
       localStorage.setItem('access',response.access)
       localStorage.setItem('refresh',response.refresh)
-      localStorage.setItem('group',response.group)
+
       console.log('token saved')
 
        this.authServices.getProfile().subscribe((response:any)=>{
+      localStorage.setItem('group',response.group)
+
       if(response.group=='Provider'){
         this.router.navigate([
           '/provider-home'

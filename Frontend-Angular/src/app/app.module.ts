@@ -31,7 +31,7 @@ import { FavoritePackagesComponent } from './favorite-packages/favorite-packages
     EditPackageComponent,
     PackageDetailsComponent,
     PublicPackagesComponent,
-    FavoritePackagesComponent
+    FavoritePackagesComponent,
   ],
   imports: [
     BrowserModule,

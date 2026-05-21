@@ -34,8 +34,33 @@ export class PackageDetailsComponent implements OnInit {
 
   }
     this.role= localStorage.getItem('group')
+    console.log(this.role)
 
 
   }
 
+  today = Date.now()
+
+  quantity:any;
+  tour_date:any;
+  data:any;
+getTotalAmount(){
+  if(!this.packageData.amount || !this.quantity){
+    return 0
+  }
+  return (this.packageData.amount*this.quantity)
+}  
+
+bookPackage(){
+  this.data = {
+    quantity:this.quantity,
+    tour_date:this.tour_date,
+    total_amount:this.getTotalAmount(),
+    package:this.packageData.id
+  }
+    this.packageService.book_package(this.data).subscribe((res)=>{
+      console.log(res)
+    })
+
+}
 }

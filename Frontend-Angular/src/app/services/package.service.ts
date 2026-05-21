@@ -131,4 +131,16 @@ export class PackageService {
     );
   }
 
+  book_package(data:any){
+        const token = localStorage.getItem('access');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.post(
+      `${environment.baseUrl}/packages/create_booking/`,data,
+      { headers },
+    );
+
+  }
+
 }
