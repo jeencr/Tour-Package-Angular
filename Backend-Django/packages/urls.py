@@ -18,4 +18,6 @@ urlpatterns =[
     path('view_favorites/',views.view_favorites),
     path('create_booking/',views.create_booking),
     path('view_booking_customer/',views.view_booking_customer),
+    path('view_booking_provider/',views.view_booking_provider),
+    path('update_status_booking/<pk>/',views.update_status_booking),
 ]

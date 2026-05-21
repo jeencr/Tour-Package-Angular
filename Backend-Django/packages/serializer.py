@@ -1,6 +1,8 @@
 from  rest_framework import serializers
 from .models import Booking, Favorites, Package, PackageImage
 
+from users.serializer import UserSerializer
+
 
 class PackageImageSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,6 +36,21 @@ class FavoriteSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class BookingSerializer(serializers.ModelSerializer):
+
+    customer_name = serializers.CharField(
+        source='customer.user.username',
+        read_only=True
+    )
+
+    customer_email = serializers.CharField(
+    source='customer.user.email',
+    read_only=True
+    )
+    customer_phone = serializers.CharField(
+    source='customer.phone',
+    read_only=True
+    )
+
 
     package_details = PackageSerializer(
     source = 'package',

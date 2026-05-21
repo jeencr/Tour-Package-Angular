@@ -18,6 +18,7 @@ import { PackageDetailsComponent } from './package-details/package-details.compo
 import { PublicPackagesComponent } from './public-packages/public-packages.component';
 import { FavoritePackagesComponent } from './favorite-packages/favorite-packages.component';
 import { CustomerViewBookingComponent } from './customer-view-booking/customer-view-booking.component';
+import { ProviderViewBookingComponent } from './provider-view-booking/provider-view-booking.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +35,7 @@ import { CustomerViewBookingComponent } from './customer-view-booking/customer-v
     PublicPackagesComponent,
     FavoritePackagesComponent,
     CustomerViewBookingComponent,
+    ProviderViewBookingComponent,
   ],
   imports: [
     BrowserModule,

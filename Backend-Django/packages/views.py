@@ -207,3 +207,35 @@ def view_booking_customer(request):
     bookings = Booking.objects.filter(customer = customer)
     serializer  =BookingSerializer(bookings,many=True)
     return Response(serializer.data)
+
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def view_booking_provider(request):
+    provider = Providers.objects.get(user = request.user)
+    bookings = Booking.objects.filter(package__provider = provider)
+    serializer  =BookingSerializer(bookings,many=True)
+    return Response(serializer.data)
+
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def update_status_booking(request,pk):
+    provider = Providers.objects.get(user=request.user)
+
+    try:
+        booking = Booking.objects.get(package__provider=provider,id=pk)
+    except Booking.DoesNotExist:
+        return Response({'message':'Booking Does Not Exist'})
+    
+    serializer = BookingSerializer(booking,data=request.data,partial=True)
+
+    if serializer.is_valid():
+        serializer.save()
+        return Response({'message':'status updated successfully'})
+    
+    return Response (serializer.errors)
+
+

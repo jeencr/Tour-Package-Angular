@@ -155,4 +155,31 @@ export class PackageService {
     );
   }
 
+  get_packags_providers() {
+    const token = localStorage.getItem('access');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.get(
+      `${environment.baseUrl}/packages/view_booking_provider/`,
+      { headers },
+    );
+  }
+
+    updateStatusBooking(id: any, data: any) {
+    const token = localStorage.getItem('access');
+
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+
+    return this.http.put(
+      `${environment.baseUrl}/packages/update_status_booking/${id}/`,
+
+      data,
+
+      { headers },
+    );
+  }
+
 }
