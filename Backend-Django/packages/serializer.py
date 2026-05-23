@@ -1,7 +1,8 @@
 from  rest_framework import serializers
-from .models import Booking, Favorites, Package, PackageImage
+from .models import Booking, Favorites, Package, PackageImage, PackageReview
 
 from users.serializer import UserSerializer
+from django.db.models import Avg
 
 
 class PackageImageSerializer(serializers.ModelSerializer):
@@ -20,9 +21,27 @@ class PackageSerializer(serializers.ModelSerializer):
     )
 
     images = PackageImageSerializer(many=True,read_only=True)
+
+
+
+    avg_rating = serializers.SerializerMethodField()
+
+    
+    def get_avg_rating(self, obj):
+
+        average = obj.packagereview_set.aggregate(Avg('rating'))['rating__avg']
+
+        if average:
+
+            return round(average,1)
+
+        return 0
     class Meta:
         model = Package
         fields = '__all__'
+
+
+
 
 
 class FavoriteSerializer(serializers.ModelSerializer):
@@ -58,4 +77,18 @@ class BookingSerializer(serializers.ModelSerializer):
 )
     class Meta:
         model = Booking
+        fields = '__all__'
+
+
+
+
+class PackageReviewSerializer(serializers.ModelSerializer):
+
+    customer_name = serializers.CharField(
+        source='customer.user.username',
+        read_only=True
+    )
+
+    class Meta:
+        model = PackageReview
         fields = '__all__'

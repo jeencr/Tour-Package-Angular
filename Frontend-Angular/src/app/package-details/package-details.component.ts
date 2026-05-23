@@ -17,6 +17,8 @@ export class PackageDetailsComponent implements OnInit {
   
 
   packageData:any;
+reviews:any
+
   ngOnInit(): void {
     this.packageId = this.activatedRoute.snapshot.paramMap.get('id')
 
@@ -36,6 +38,10 @@ export class PackageDetailsComponent implements OnInit {
     this.role= localStorage.getItem('group')
     console.log(this.role)
 
+
+    this.getReviews()
+
+    
 
   }
 
@@ -63,4 +69,26 @@ bookPackage(){
     })
 
 }
+
+rating=0;
+review="";
+addReview(){
+  this.data = {
+    rating:this.rating,
+    review:this.review,
+    package:this.packageData.id
+  }
+  this.packageService.addPackageReview(this.data).subscribe((res)=>{
+    console.log(res)
+  })
+
+}
+
+getReviews(){
+  this.packageService.getPackageReviews(this.packageId).subscribe((res:any)=>{
+    this.reviews = res.reviews;
+    console.log(this.reviews,this.packageId)
+  })
+}
+
 }

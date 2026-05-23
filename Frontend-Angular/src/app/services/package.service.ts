@@ -182,4 +182,25 @@ export class PackageService {
     );
   }
 
+  addPackageReview(data:any){
+
+    const token = localStorage.getItem('access');
+    
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.post(
+      `${environment.baseUrl}/packages/add_package_review/`,data,
+      { headers },
+    );
+
+  }
+
+  getPackageReviews(id:any){
+      return this.http.get(
+      `${environment.baseUrl}/packages/package_reviews/${id}/`,
+    );
+
+  }
+
 }

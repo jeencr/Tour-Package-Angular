@@ -3,7 +3,8 @@ from users.models import Providers
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
-from .serializer import BookingSerializer, FavoriteSerializer, PackageImageSerializer, PackageSerializer
+from .serializer import BookingSerializer, FavoriteSerializer, PackageImageSerializer, PackageReviewSerializer, PackageSerializer
+from django.db.models import Avg
 
 from .models import *
 
@@ -237,5 +238,32 @@ def update_status_booking(request,pk):
         return Response({'message':'status updated successfully'})
     
     return Response (serializer.errors)
+
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def add_package_review(request):
+    customer = Customers.objects.get(user=request.user)
+
+    data = request.data.copy()
+
+    data['customer'] = customer.id
+
+    serializer = PackageReviewSerializer(data=data)
+
+    if serializer.is_valid():
+        serializer.save()
+        return Response({'message':'Review added'})
+
+    return Response(serializer.errors)
+
+
+@api_view(['GET'])
+def package_reviews(request, pk):
+    reviews = PackageReview.objects.filter(package=pk)
+    serializer = PackageReviewSerializer(reviews,many=True)
+    average_rating = reviews.aggregate(Avg('rating'))['rating__avg']
+    return Response({'reviews': serializer.data,'average_rating': average_rating})
 
 

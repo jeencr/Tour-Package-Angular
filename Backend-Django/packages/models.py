@@ -68,3 +68,18 @@ class Booking(models.Model):
     total_amount = models.DecimalField(decimal_places=2,max_digits=10)
     booked_on =  models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=100,default='Pending')
+
+
+
+class PackageReview(models.Model):
+    customer = models.ForeignKey(Customers,on_delete=models.CASCADE)
+    package = models.ForeignKey(Package, on_delete=models.CASCADE)
+    rating = models.IntegerField()
+    review = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = [
+            'customer',
+            'package'
+        ]

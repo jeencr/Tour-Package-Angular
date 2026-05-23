@@ -14,6 +14,7 @@ packages:any=[]
   ngOnInit(): void {
     this.packageService.getPublicPackages().subscribe((res)=>{
       this.packages = res;
+      console.log(this.packages)
     })
 
   }

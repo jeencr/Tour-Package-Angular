@@ -20,4 +20,6 @@ urlpatterns =[
     path('view_booking_customer/',views.view_booking_customer),
     path('view_booking_provider/',views.view_booking_provider),
     path('update_status_booking/<pk>/',views.update_status_booking),
+    path('package_reviews/<pk>/',views.package_reviews),
+    path('add_package_review/',views.add_package_review),
 ]
