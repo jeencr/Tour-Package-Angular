@@ -14,6 +14,7 @@ import { PublicPackagesComponent } from './public-packages/public-packages.compo
 import { FavoritePackagesComponent } from './favorite-packages/favorite-packages.component';
 import { CustomerViewBookingComponent } from './customer-view-booking/customer-view-booking.component';
 import { ProviderViewBookingComponent } from './provider-view-booking/provider-view-booking.component';
+import { ManageDestinationsComponent } from './manage-destinations/manage-destinations.component';
 
 const routes: Routes = [
   {path:'',component:LandingComponent},
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path:'favorite-packages',component:FavoritePackagesComponent},
   {path:'customer-booking',component:CustomerViewBookingComponent},
   {path:'provider-booking',component:ProviderViewBookingComponent},
+  {path:'manage-destinations',component:ManageDestinationsComponent},
 
 ];
 

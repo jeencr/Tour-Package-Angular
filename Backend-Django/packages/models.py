@@ -83,3 +83,9 @@ class PackageReview(models.Model):
             'customer',
             'package'
         ]
+
+
+class ProviderDestinations(models.Model):
+    provider = models.ForeignKey(Providers,on_delete=models.CASCADE)
+    destination = models.ForeignKey(Destination,on_delete=models.CASCADE)
+    base_amount = models.DecimalField(max_digits=10,decimal_places=2)

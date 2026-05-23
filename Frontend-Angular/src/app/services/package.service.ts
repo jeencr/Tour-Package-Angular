@@ -203,4 +203,30 @@ export class PackageService {
 
   }
 
+    addProviderDestinations(data:any){
+        const token = localStorage.getItem('access');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.post(
+      `${environment.baseUrl}/packages/add_destinations_provider/`,data,
+      { headers },
+    );
+
+  }
+
+  getProviderDestinations(){
+
+     const token = localStorage.getItem('access');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.get(
+      `${environment.baseUrl}/packages/view_provider_destinations/`,
+      { headers },
+    );
+    
+
+  }
+
 }

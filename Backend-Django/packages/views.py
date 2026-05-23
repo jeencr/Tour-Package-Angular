@@ -267,3 +267,30 @@ def package_reviews(request, pk):
     return Response({'reviews': serializer.data,'average_rating': average_rating})
 
 
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def add_destinations_provider(request):
+    provider = Providers.objects.get(user = request.user)
+    print(request.data)
+    destination_name = request.data.get('destination')
+    base_amount = request.data.get('amount')
+    destination,created  = Destination.objects.get_or_create(name = destination_name)
+
+    ProviderDestinations.objects.create(provider=provider,destination=destination,base_amount=base_amount)
+
+    return Response({'message':'added the destination successfully '})
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def view_provider_destinations(request):
+    provider = Providers.objects.get(user = request.user)
+    d = ProviderDestinations.objects.filter(provider=provider)
+    destinations=[]
+    for i in d:
+        destinations.append({
+            'id':i.id,
+            'destination_name':i.destination.name,
+            'base_amount':i.base_amount,
+        })    
+
+    return Response(destinations)

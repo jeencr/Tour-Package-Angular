@@ -19,6 +19,8 @@ import { PublicPackagesComponent } from './public-packages/public-packages.compo
 import { FavoritePackagesComponent } from './favorite-packages/favorite-packages.component';
 import { CustomerViewBookingComponent } from './customer-view-booking/customer-view-booking.component';
 import { ProviderViewBookingComponent } from './provider-view-booking/provider-view-booking.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { ManageDestinationsComponent } from './manage-destinations/manage-destinations.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,12 +38,14 @@ import { ProviderViewBookingComponent } from './provider-view-booking/provider-v
     FavoritePackagesComponent,
     CustomerViewBookingComponent,
     ProviderViewBookingComponent,
+    ManageDestinationsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

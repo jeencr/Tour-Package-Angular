@@ -1,0 +1,78 @@
+<div class="row m-5">
+  <!-- FORM -->
+
+  <div class="col-md-5">
+    <div class="card text-start shadow">
+      <div class="card-body">
+        <h4 class="card-title mb-4">Add Destinations</h4>
+
+        <ng-select
+          [items]="destinations"
+          bindLabel="name"
+          [addTag]="true"
+          bindValue="name"
+          [searchable]="true"
+          [(ngModel)]="destination"
+          placeholder="Search destination"
+        >
+        </ng-select>
+
+        <br />
+
+        <div class="form-floating mb-3">
+          <input
+            type="number"
+            class="form-control"
+            [(ngModel)]="amount"
+            id="formId1"
+            placeholder=""
+          />
+
+          <label for="formId1"> Base Amount </label>
+        </div>
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="addDestination()"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLE -->
+
+  <div class="col-md-7">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Destination</th>
+
+            <th>Base Amount</th>
+
+            <th>Add Photos</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let d of providerDestination">
+            <td>
+              {{ d.destination_name }}
+            </td>
+
+            <td>
+              {{ d.base_amount }}
+            </td>
+
+            <td>
+              <button class="btn btn-sm btn-success">Add Photos</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
