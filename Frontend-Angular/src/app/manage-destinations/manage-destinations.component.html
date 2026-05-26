@@ -68,7 +68,10 @@
             </td>
 
             <td>
-              <button class="btn btn-sm btn-success">Add Photos</button>
+            <input type="file" (change)="selectImage($event)"> <br>
+            
+            
+                  <button class="btn btn-success" (click)="uploadImage(d.destination_id)">Upload Image</button>
             </td>
           </tr>
         </tbody>

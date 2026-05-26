@@ -22,6 +22,7 @@ amount=0;
 
     this.packageService.getProviderDestinations().subscribe((res)=>{
       this.providerDestination = res;
+      console.log(this.providerDestination)
     })
 
   }
@@ -36,6 +37,18 @@ amount=0;
     this.packageService.addProviderDestinations(this.data).subscribe((res)=>{
       console.log(res);
     })
+  }
+
+    selectImage( event:any){
+    this.selectImage = event.target.files[0]
+    console.log(this.selectImage)
+  }
+
+  uploadImage(id:any){
+    this.packageService.uploadDestinationImage(id,this.selectImage).subscribe((res)=>{
+      console.log(res)
+    })
+
   }
 
 }

@@ -290,7 +290,157 @@ def view_provider_destinations(request):
         destinations.append({
             'id':i.id,
             'destination_name':i.destination.name,
+            'destination_id':i.destination.id,
             'base_amount':i.base_amount,
         })    
 
     return Response(destinations)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def add_destination_image(request):
+    destination_id = request.data.get('id')
+    print(destination_id,'sdondeuvjn')
+    image = request.data.get('image')
+    try:
+        destination = Destination.objects.get(id = destination_id)
+    except Destination.DoesNotExist:
+        Response({'message':'destination does mot exist'})
+    
+    DestinationImage.objects.create(destination=destination,image=image)
+    return Response({'message':'added image succefully'})
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def add_stay(request):
+    destination_id = request.data.get('destination')
+    print(destination_id,'sdondeuvjn')
+    
+    provider = Providers.objects.get(user = request.user )
+    try:
+        destination = ProviderDestinations.objects.get(id=destination_id,provider = provider)
+    except ProviderDestinations.DoesNotExist:
+        return Response({'message':'destination not found'})
+    stay_name = request.data.get('stay_name')
+    amount_per_night = request.data.get('amount_per_night')
+    stay_name = request.data.get('stay_name')
+    max_people = request.data.get('max_people')
+    Stays.objects.create(destination=destination,provider=provider,stay_name=stay_name,amount_per_night=amount_per_night,max_people=max_people)
+    return Response({'message':'success'})
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def view_stays_provider(request):
+    provider = Providers.objects.get(user = request.user)
+    data = Stays.objects.filter(provider=provider)
+    stays = []
+    for i in data:
+        stays.append({
+            'stay_id':i.id,
+            'amount_per_night':i.amount_per_night,
+            'max_people':i.max_people,
+            'stay_name':i.stay_name,
+            'destination':i.destination.destination.name,
+            'provider':i.provider.user.username
+        })
+    return Response(stays)
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_stays(request,pk):
+    provider = Providers.objects.get(user = request.user)
+    try:
+        stay = Stays.objects.get(id=pk,provider=provider)
+    except Stays.DoesNotExist:
+        return Response({'message':'stay not found'})
+    
+    stay.delete()
+    return Response({'message':'stay deleted successfully'})
+
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_single_stay(request,pk):
+    provider = Providers.objects.get(user = request.user)
+    try:
+        stay = Stays.objects.get(id=pk,provider=provider)
+    except Stays.DoesNotExist:
+        return Response({'message':'stay not found'})
+    
+    data = {
+        'stay_id':stay.id,
+        'amount_per_night':stay.amount_per_night,
+        'max_people':stay.max_people,
+        'stay_name':stay.stay_name,
+        'destination':stay.destination.destination.name,
+        'destination_id':stay.destination.id,
+        'provider':stay.provider.user.username
+    }
+    
+    
+    return Response(data)
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def update_stay(request,pk):
+    provider = Providers.objects.get(user = request.user)
+    try:
+        stay = Stays.objects.get(id=pk,provider=provider)
+    except Stays.DoesNotExist:
+        return Response({'message':'stay not found'})
+    
+    stay.stay_name = request.data.get('stay_name',stay.stay_name)
+    stay.amount_per_night = request.data.get('amount_per_night',stay.amount_per_night)
+    stay.max_people = request.data.get('max_people',stay.max_people)
+    stay.destination_id = request.data.get('destination',stay.destination)
+    stay.save()
+    
+    
+    return Response({'message':'success'})
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def add_stay_images(request):
+    stay_id = request.data.get('stay')
+    image = request.data.get('image')
+
+    try:
+        stay = Stays.objects.get(id=stay_id)
+    except Stays.DoesNotExist:
+        return Response({'message':'stay not found'})
+    
+    StayImages.objects.create(stay=stay,image=image)
+    return Response({'message':'Image added successfully'})
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def view_stay_images(request,stay_id):
+    images = StayImages.objects.filter(stay_id=stay_id)
+    data = []
+    for i in images:
+        data.append({
+            'image':i.image.url,
+            'id':i.id
+        })
+    
+    return Response(data)
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_stay_image(request,image_id):
+    try:
+        image = StayImages.objects.get(id=image_id)
+    except StayImages.DoesNotExist:
+        return Response({'message':'Image not found'})
+    
+    image.delete()
+    return Response({'message':'Image deleted successfully'})
+
+
+
+
+

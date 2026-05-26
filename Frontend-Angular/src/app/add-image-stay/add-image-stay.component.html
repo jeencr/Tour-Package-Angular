@@ -1,0 +1,18 @@
+<div class="container mt-5">
+    <h2>Add Image to Stay</h2>
+    <div class="form-group">
+        <label for="image">Select Image</label>
+        <input type="file" class="form-control-file" id="image" (change)="selectImage($event)">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="uploadImage(stayId)">Add Image</button>
+
+    <div class="mt-4">
+        <h3>Existing Images</h3>
+        <div class="row">
+            <div class="col-md-3" *ngFor="let img of images">
+                <img [src]="'http://127.0.0.1:8000' +img.image" class="img-thumbnail" alt="Stay Image">
+                <button class="btn btn-danger btn-sm mt-2" (click)="deleteImage(img.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

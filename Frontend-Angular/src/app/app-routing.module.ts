@@ -15,6 +15,10 @@ import { FavoritePackagesComponent } from './favorite-packages/favorite-packages
 import { CustomerViewBookingComponent } from './customer-view-booking/customer-view-booking.component';
 import { ProviderViewBookingComponent } from './provider-view-booking/provider-view-booking.component';
 import { ManageDestinationsComponent } from './manage-destinations/manage-destinations.component';
+import { ManageStaysComponent } from './manage-stays/manage-stays.component';
+import { AddStaysComponent } from './add-stays/add-stays.component';
+import { EditStayComponent } from './edit-stay/edit-stay.component';
+import { AddImageStayComponent } from './add-image-stay/add-image-stay.component';
 
 const routes: Routes = [
   {path:'',component:LandingComponent},
@@ -32,8 +36,13 @@ const routes: Routes = [
   {path:'customer-booking',component:CustomerViewBookingComponent},
   {path:'provider-booking',component:ProviderViewBookingComponent},
   {path:'manage-destinations',component:ManageDestinationsComponent},
+  {path:'manage-stays',component:ManageStaysComponent},
+  {path:'add-stays',component:AddStaysComponent},
+  {path:'edit-stays/:id',component:EditStayComponent},
+  {path:'add-image-stays/:id',component:AddImageStayComponent},
 
-];
+]
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

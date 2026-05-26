@@ -89,3 +89,20 @@ class ProviderDestinations(models.Model):
     provider = models.ForeignKey(Providers,on_delete=models.CASCADE)
     destination = models.ForeignKey(Destination,on_delete=models.CASCADE)
     base_amount = models.DecimalField(max_digits=10,decimal_places=2)
+
+
+class Stays(models.Model):
+    provider = models.ForeignKey(Providers,on_delete=models.CASCADE)
+    destination = models.ForeignKey(ProviderDestinations,on_delete=models.CASCADE)
+    stay_name = models.CharField(max_length=100)
+    amount_per_night = models.DecimalField(max_digits=10,decimal_places=2)
+    max_people = models.IntegerField()
+    def __str__(self):
+        return self.stay_name
+
+class StayImages(models.Model):
+    stay = models.ForeignKey(Stays,on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='stay_images/')
+    def __str__(self):
+        return self.stay.stay_name
+

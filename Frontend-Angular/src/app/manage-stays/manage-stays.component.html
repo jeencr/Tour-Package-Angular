@@ -1,0 +1,38 @@
+<div class="container mt-5">
+    <a [routerLink]="'/add-stays'" class="btn btn-primary" role="button">Add Stay</a>
+
+<div
+    class="table-responsive"
+>
+    <table
+        class="table table-primary"
+    >
+        <thead>
+            <tr>
+                <th scope="col">Stay Name</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Max People</th>
+                <th scope="col">Add Images</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="" *ngFor="let s of stays">
+                <td scope="row">{{s.stay_name}}</td>
+                <td>{{s.destination}}</td>
+                <td>{{s.amount_per_night}}</td>
+                <td>{{s.max_people}}</td>
+                <td>
+                    <button class="btn btn-secondary" [routerLink]="'/add-image-stays/' + s.stay_id">Add Images</button>
+                </td>
+                <td>
+                    <button class="btn btn-warning" [routerLink]="'/edit-stays/' + s.stay_id">Edit</button>
+                    <button class="btn btn-danger" (click)="deleteStay(s.stay_id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+

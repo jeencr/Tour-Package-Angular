@@ -229,4 +229,83 @@ export class PackageService {
 
   }
 
+  uploadDestinationImage(id:any,image:any){
+    const token = localStorage.getItem('access')
+    const headers = {Authorization:`Bearer ${token}`}
+    const formdata = new FormData()
+
+    formdata.append('image',image)
+    formdata.append('id',id)
+    return this.http.post(`${environment.baseUrl}/packages/add_destination_image/`,formdata,{headers})
+
+  }
+
+  addStays(data:any){
+      const token = localStorage.getItem('access')
+      const headers = {Authorization:`Bearer ${token}`}
+
+    return this.http.post(`${environment.baseUrl}/packages/add_stay/`,data,{headers})
+
+  }
+
+  viewStaysProvider(){
+      const token = localStorage.getItem('access')
+      const headers = {Authorization:`Bearer ${token}`}
+
+    return this.http.get(`${environment.baseUrl}/packages/view_stays_provider/`,{headers})
+
+  }
+
+  delecteStay(id:any){
+      const token = localStorage.getItem('access')
+      const headers = {Authorization:`Bearer ${token}`}
+
+    return this.http.delete(`${environment.baseUrl}/packages/delete_stay/${id}/`,{headers})
+  }
+
+  getSingleStay(id:any){
+      const token = localStorage.getItem('access')
+      const headers = {Authorization:`Bearer ${token}`}
+
+    return this.http.get(`${environment.baseUrl}/packages/get_single_stay/${id}/`,{headers})
+  }
+
+  updateStay(id:any,data:any){
+      const token = localStorage.getItem('access')
+      const headers = {Authorization:`Bearer ${token}`}
+
+    return this.http.put(`${environment.baseUrl}/packages/update_stay/${id}/`,data,{headers})
+  }
+
+  addStayImages(stayId:any,image:any){
+      const token = localStorage.getItem('access');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+
+    const formdata = new FormData()
+
+    formdata.append('stay',stayId)
+    formdata.append('image',image)
+
+    return this.http.post(`${environment.baseUrl}/packages/add_stay_images/`,formdata,{headers})
+    
+  }
+
+  viewStayImages(stayId:any){
+      const token = localStorage.getItem('access');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.get(`${environment.baseUrl}/packages/view_stay_images/${stayId}/`,{headers})
+  }
+
+  deleteStayImage(imageId:any){
+      const token = localStorage.getItem('access');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    return this.http.delete(`${environment.baseUrl}/packages/delete_stay_image/${imageId}/`,{headers})
+  }
+
 }

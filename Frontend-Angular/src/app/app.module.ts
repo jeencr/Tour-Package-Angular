@@ -21,6 +21,10 @@ import { CustomerViewBookingComponent } from './customer-view-booking/customer-v
 import { ProviderViewBookingComponent } from './provider-view-booking/provider-view-booking.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ManageDestinationsComponent } from './manage-destinations/manage-destinations.component';
+import { ManageStaysComponent } from './manage-stays/manage-stays.component';
+import { AddStaysComponent } from './add-stays/add-stays.component';
+import { EditStayComponent } from './edit-stay/edit-stay.component';
+import { AddImageStayComponent } from './add-image-stay/add-image-stay.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +43,10 @@ import { ManageDestinationsComponent } from './manage-destinations/manage-destin
     CustomerViewBookingComponent,
     ProviderViewBookingComponent,
     ManageDestinationsComponent,
+    ManageStaysComponent,
+    AddStaysComponent,
+    EditStayComponent,
+    AddImageStayComponent,
   ],
   imports: [
     BrowserModule,
